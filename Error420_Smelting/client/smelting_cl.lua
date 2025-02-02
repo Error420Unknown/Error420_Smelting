@@ -35,7 +35,7 @@ RegisterNetEvent('Error420_Smelting:startSmelting', function()
     end
 
     if not nearFurnace then
-        TriggerEvent('ox_lib:notify', {type = 'error', description = 'You are too far from the furnace!'})
+        exports.qbx_core:Notify('You are too far from the furnace!', 'error')
         return
     end
 
@@ -68,7 +68,7 @@ RegisterNetEvent('Error420_Smelting:startSmelting', function()
                         end
                     end
 
-                    TriggerEvent('ox_lib:notify', {type = 'error', description = 'You moved too far from the furnace!'})
+                    exports.qbx_core:Notify('You moved too far from the furnace!', 'error')
                 end
             end
         })
@@ -91,7 +91,7 @@ RegisterNetEvent('Error420_Smelting:playAnimation', function(time, item, batchSi
     end
 
     if not nearFurnace then
-        TriggerEvent('ox_lib:notify', {type = 'error', description = 'You are too far from the furnace!'})
+        exports.qbx_core:Notify('You are too far from the furnace!', 'error')
         return
     end
 
@@ -124,9 +124,9 @@ RegisterNetEvent('Error420_Smelting:playAnimation', function(time, item, batchSi
                 return
             end
         end
-        TriggerEvent('ox_lib:notify', {type = 'error', description = 'Smelting failed: You moved too far from the furnace!'})
+        exports.qbx_core:Notify('Smelting failed: You moved too far from the furnace!', 'error')
     else
         TriggerServerEvent('Error420_Smelting:refundMaterials', item, batchSize)
-        TriggerEvent('ox_lib:notify', {type = 'error', description = 'Smelting cancelled! Materials returned.'})
+        exports.qbx_core:Notify('Smelting cancelled! Materials returned.', 'error')
     end
 end)

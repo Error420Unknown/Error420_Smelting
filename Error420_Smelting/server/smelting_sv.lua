@@ -51,7 +51,7 @@ RegisterNetEvent('Error420_Smelting:attemptSmelt', function(item, batchSize)
         local itemData = exports.ox_inventory:GetItem(src, input.item)
 
         if not itemData or (itemData.count or 0) < requiredAmount then
-            TriggerClientEvent('ox_lib:notify', src, {type = 'error', description = Config.MenuLabels.NotEnoughMessage:format(input.label, batchSize)})
+            exports.qbx_core:Notify(Config.MenuLabels.NotEnoughMessage:format(input.label, batchSize), 'error')
             return
         end
     end
@@ -96,7 +96,7 @@ RegisterNetEvent('Error420_Smelting:completeSmelting', function(item, batchSize)
     local totalAmount = recipe.Result.amount * batchSize
     exports.ox_inventory:AddItem(src, recipe.Result.item, totalAmount)
 
-    TriggerClientEvent('ox_lib:notify', src, {type = 'success', description = Config.MenuLabels.SuccessMessage:format(totalAmount, recipe.Result.label)})
+    exports.qbx_core:Notify(Config.MenuLabels.SuccessMessage:format(totalAmount, recipe.Result.label), 'success')
 
     smeltingTimers[src] = nil
 end)
@@ -109,7 +109,7 @@ RegisterNetEvent('Error420_Smelting:refundMaterials', function(item, batchSize)
     for _, input in pairs(recipe.Inputs) do
         exports.ox_inventory:AddItem(src, input.item, input.amount * batchSize)
     end
-    TriggerClientEvent('ox_lib:notify', src, {type = 'error', description = Config.MenuLabels.CancelMessage})
+    exports.qbx_core:Notify(Config.MenuLabels.CancelMessage, 'error')
 
     smeltingTimers[src] = nil
 end)
