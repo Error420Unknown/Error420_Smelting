@@ -1,7 +1,7 @@
 local QBCore = exports.qbx_core
 local smeltingTimers = {}
 
-local DiscordWebhook = "https://discord.com/api/webhooks/1335515567234486304/vw73ZfnlnbGqu4BGzMV45FA-hTZ9TXj9xDx4j0PpNeC2xpHFl2jvODNzpr9fb3zztX72"
+local DiscordWebhook = "WEBHOOK_HERE"
 
 local function SendDiscordLog(title, message, color)
     local embed = {
